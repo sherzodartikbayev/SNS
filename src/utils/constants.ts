@@ -2,22 +2,27 @@ export const navbarLinks = [
   {
     id: 1,
     title: "HOME",
+    href: "home",
   },
   {
     id: 2,
     title: "ABOUT ME",
+    href: "about",
   },
   {
     id: 3,
     title: "SKILLS",
+    href: "skills",
   },
   {
     id: 4,
     title: "WORK",
+    href: "work",
   },
   {
     id: 5,
     title: "CONTACT",
+    href: "contact",
   },
 ];
 
@@ -65,3 +70,20 @@ export const about = [
   },
 ];
 
+export const contact = [
+  {
+    id: 1,
+    title: "YouTube",
+    link: "https://www.youtube.com/@BLENDERSNS", 
+  },
+  {
+    id: 2,
+    title: "Telegram",
+    link: "https://t.me/sns7562",
+  },
+  {
+    id: 3,
+    title: "Instagram",
+    link: "https://www.instagram.com/ble.sns/",
+  }
+]
