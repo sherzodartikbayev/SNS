@@ -1,0 +1,7 @@
+export { default as Navbar } from "./navbar/navbar"
+export { default as Hero } from "./hero/hero"
+export { default as About } from "./about/about"
+export { default as Skills } from "./skills/skills"
+export { default as Work } from "./work/work"
+export { default as Contact } from "./contact/contact"
+export { default as Footer } from "./footer/footer"
