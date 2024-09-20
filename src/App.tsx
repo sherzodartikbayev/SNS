@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Footer, Hero, Navbar } from "./components";
+import { About, Footer, Hero, Navbar, Skills, Work } from "./components";
 import { Eksport, PostProduction, PreProduction, Production } from "./pages";
 
 const App = () => {
@@ -13,6 +13,9 @@ const App = () => {
         <Route path="/post-production" element={<PostProduction />} />
         <Route path="/eksport" element={<Eksport />} />
       </Routes>
+      <About />
+      <Skills />
+      <Work />
       <Footer />
     </main>
   );
