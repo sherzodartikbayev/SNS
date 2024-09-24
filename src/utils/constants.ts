@@ -1,26 +1,38 @@
+import {
+  work1,
+  work2,
+  work3,
+  work4,
+  work5,
+  work6,
+  work7,
+  work8,
+  work9,
+} from "../assets/";
+
 export const navbarLinks = [
   {
-    id: 1,
+    id: "home",
     title: "HOME",
     href: "home",
   },
   {
-    id: 2,
+    id: "about",
     title: "ABOUT ME",
     href: "about",
   },
   {
-    id: 3,
+    id: "skills",
     title: "SKILLS",
     href: "skills",
   },
   {
-    id: 4,
+    id: "work",
     title: "WORK",
     href: "work",
   },
   {
-    id: 5,
+    id: "contact",
     title: "CONTACT",
     href: "contact",
   },
@@ -70,20 +82,159 @@ export const about = [
   },
 ];
 
-export const contact = [
+export const work = [
   {
     id: 1,
-    title: "YouTube",
-    link: "https://www.youtube.com/@BLENDERSNS", 
+    href: work1,
+    alt: "yasmina.med.center",
   },
   {
     id: 2,
-    title: "Telegram",
-    link: "https://t.me/sns7562",
+    href: work2,
+    alt: "compass_private_school",
   },
   {
     id: 3,
-    title: "Instagram",
-    link: "https://www.instagram.com/ble.sns/",
-  }
-]
+    href: work3,
+    alt: "bashkent_uz",
+  },
+  {
+    id: 4,
+    href: work4,
+    alt: "hamkor_residence_",
+  },
+  {
+    id: 5,
+    href: work5,
+    alt: "qushxona_express",
+  },
+  {
+    id: 6,
+    href: work6,
+    alt: "ibrohimpro_com",
+  },
+  {
+    id: 7,
+    href: work7,
+    alt: "zinnat_media",
+  },
+  {
+    id: 8,
+    href: work8,
+    alt: "businessacademy.uz",
+  },
+  {
+    id: 9,
+    href: work9,
+    alt: "fayz_uylar",
+  },
+];
+
+export const production = [
+  {
+    id: 1,
+    title:
+      "Loyiha kontseptsiyasi Videoning maqsadi, mazmuni va kimga mo‘ljallangani haqida qaror qabul qiling.",
+  },
+  {
+    id: 2,
+    title: "Ssenariy yozish: Videoning mazmunini ssenariyga tushirish.",
+  },
+  {
+    id: 3,
+    title:
+      "Storyboarding: Har bir sahnani rasmlarga tushirish orqali video qanday ko‘rinishini tasavvur qilish.",
+  },
+  {
+    id: 4,
+    title:
+      "Lokatsiya tanlash: Syomka o‘tadigan joylarni tanlash va zarura bo‘lsa, ruxsat olish.",
+  },
+  {
+    id: 5,
+    title:
+      "Asbob-uskunalarni tayyorlash: Kamera, mikrofon, yorug'lik va boshqa texnik vositalarni oldindan tayyorlash.",
+  },
+  {
+    id: 6,
+    title:
+      "Akterlar/Model tanlash: Agar kerak bo‘lsa, akterlar yoki modellarni tanlash.",
+  },
+  {
+    id: 7,
+    title:
+      "Grafik/Animatsiya tayyorlash: Agar animatsiya kerak bo‘lsa, uni Blender yoki After Effects’da tayyorlash.",
+  },
+];
+
+export const postProduction = [
+  {
+    id: 1,
+    title:
+      "Asbob-uskunalarni sozlash: Yorug‘lik, kamera burchagi va audio sozlamalarini to‘g‘ri yo‘lga qo‘ying.",
+  },
+  {
+    id: 2,
+    title:
+      "Kadrlarni olish: Ssenariy va storyboardga mos ravishda kadrlarni olish.",
+  },
+  {
+    id: 3,
+    title:
+      "Yorug‘lik va ovoz nazorati: Yorug‘lik to‘g‘ri tushishini va ovoz sifatini tekshirish.",
+  },
+  {
+    id: 4,
+    title:
+      "Multiple Takes: Zarurat bo‘lsa, bir xil sahnani bir necha marta suratga olish.",
+  },
+];
+
+export const eksport = [
+  {
+    id: 1,
+    title:
+      "Videolarni montaj qilish: Kadrlarni tahrirlash va birlashtirish (Premiere Pro yoki After Effects yordamida).",
+  },
+  {
+    id: 2,
+    title:
+      "Ovoz tahrirlash: Mikrofondan yozilgan ovozni sifatli qilish, musiqa va tovush effektlari qo'shish.",
+  },
+  {
+    id: 3,
+    title:
+      "Rangni korreksiyalash: Videodagi ranglarni to'g'rilash va optimallashtirish.",
+  },
+  {
+    id: 4,
+    title:
+      "VFX va grafiklar: Agar zarur bo‘lsa, video effektlar va animatsiyalar qo‘shish.",
+  },
+  {
+    id: 5,
+    title: "Titrlash: Videoga matn, titr va logotiplar joylash.",
+  },
+];
+
+export const preProduction = [
+  {
+    id: 1,
+    title:
+      "Eksport qilish: Loyihani kerakli formatda eksport qilish (YouTube, Instagram yoki boshqa platformalar uchun optimallashtirish).",
+  },
+  {
+    id: 2,
+    title:
+      "Eksport qilish: Loyihani kerakli formatda eksport qilish (YouTube, Instagram yoki boshqa platformalar uchun optimallashtirish).",
+  },
+  {
+    id: 3,
+    title:
+      "Videoni baholash: Tayyor videoni ko'rib chiqish va mijoz yoki jamoaning fikrini olish.",
+  },
+  {
+    id: 4,
+    title: "Nashr qilish: Videoni belgilangan platformalarda tarqatish.",
+  },
+];

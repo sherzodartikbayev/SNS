@@ -2,11 +2,14 @@ import { Link } from "react-router-dom";
 import { styles } from "../../utils/style";
 import { close, logo, menu } from "../../assets";
 import { navbarLinks } from "../../utils/constants";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 const Navbar = () => {
   const [toggleNav, setToggleNav] = useState(false);
   const toggleHandler = () => setToggleNav((prev) => !prev);
+
+  const [active, setActive] = useState("home");
+  const activeHandler = (id: SetStateAction<string>) => setActive(id);
 
   return (
     <header
@@ -26,13 +29,16 @@ const Navbar = () => {
       </div>
 
       {/* NavbarLinks  */}
-      <ul className={`${styles.flexCenter} flex-1 gap-20 max-lg:hidden`}>
+      <ul className={`${styles.flexCenter} flex-1 gap-20 max-md:hidden`}>
         {navbarLinks.map((nav) => (
           <li
             key={nav.id}
-            className="font-inter text-xl text-yellow hover:text-white transition-all duration-500 cursor-pointer"
+            className={`font-inter font-light leading-6 text-xl text-yellow hover:text-white transition-all duration-500 cursor-pointer  ${
+              active === nav.id ? "text-white" : "text-lightWhite"
+            }`}
+            onClick={() => activeHandler(nav.id)}
           >
-            <Link to={nav.href}>{nav.title}</Link>
+            <a href={`#${nav.id}`}>{nav.title}</a>
           </li>
         ))}
       </ul>
@@ -52,16 +58,16 @@ const Navbar = () => {
           !toggleNav ? "hidden" : "flex"
         } flex-col bg-gradient p-6 absolute top-24 right-0 left-0 w-full h-[100vh] z-[99]`}
       >
-        <ul className={`${styles.flexCenter} flex-col list-none flex-1 gap-10`}>
+        <ul
+          className={`${styles.flexCenter} flex-col list-none flex-1 gap-2 top-[-50px] relative`}
+        >
           {navbarLinks.map((nav) => (
             <li
               key={nav.id}
               className={`text-yellow hover:text-white active:text-white text-[2em]
               cursor-pointer transition-all duration-500`}
             >
-              <Link to={nav.href} onClick={() => setToggleNav(false)}>
-                {nav.title}
-              </Link>
+              <a href={`#${nav.id}`}>{nav.title}</a>
             </li>
           ))}
         </ul>
