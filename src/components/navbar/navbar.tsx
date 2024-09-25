@@ -65,9 +65,9 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`text-yellow hover:text-white active:text-white text-[2em]
-              cursor-pointer transition-all duration-500`}
+                cursor-pointer transition-all duration-500`}
             >
-              <a href={`#${nav.id}`}>{nav.title}</a>
+              <a href={`#${nav.id}`} onClick={() => setToggleNav(false)}>{nav.title}</a>
             </li>
           ))}
         </ul>
