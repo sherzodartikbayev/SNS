@@ -13,7 +13,7 @@ const Hero = () => {
               Salom
             </h1>
             <p className="text-white text-4xl max-md:text-2xl mb-10">
-              Mening ismim Sirojjiddin
+              Mening ismim Sirojiddin
             </p>
             <p className="text-white text-xl">
               To’liq ismim Sirojiddin Sulaymanov Nodimjon o’g’li yoshim 19da 2005
