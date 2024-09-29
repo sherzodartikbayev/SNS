@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { styles } from "../../utils/style";
 import { close, logo, menu } from "../../assets";
 import { navbarLinks } from "../../utils/constants";
@@ -17,7 +16,7 @@ const Navbar = () => {
     >
       {/* Logo  */}
       <div className="">
-        <Link to="/" onClick={() => setToggleNav(false)}>
+        <a href="/" onClick={() => setToggleNav(false)}>
           <img
             src={logo}
             alt="logo"
@@ -25,9 +24,8 @@ const Navbar = () => {
             height={44}
             className="object-contain"
           />
-        </Link>
+        </a>
       </div>
-
       {/* NavbarLinks  */}
       <ul className={`${styles.flexCenter} flex-1 gap-20 max-md:hidden`}>
         {navbarLinks.map((nav) => (
@@ -42,7 +40,6 @@ const Navbar = () => {
           </li>
         ))}
       </ul>
-
       {/* Navbar mobile  */}
       <div className="sm:hidden flex flex-1 justify-end items-center">
         <img
@@ -52,7 +49,6 @@ const Navbar = () => {
           onClick={toggleHandler}
         />
       </div>
-
       <div
         className={`${styles.flexCenter} ${
           !toggleNav ? "hidden" : "flex"
@@ -65,9 +61,11 @@ const Navbar = () => {
             <li
               key={nav.id}
               className={`text-yellow hover:text-white active:text-white text-[2em]
-                cursor-pointer transition-all duration-500`}
+                  cursor-pointer transition-all duration-500`}
             >
-              <a href={`#${nav.id}`} onClick={() => setToggleNav(false)}>{nav.title}</a>
+              <a href={`#${nav.id}`} onClick={() => setToggleNav(false)}>
+                {nav.title}
+              </a>
             </li>
           ))}
         </ul>

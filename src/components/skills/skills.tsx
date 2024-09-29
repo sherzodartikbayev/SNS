@@ -12,14 +12,10 @@ const Skills = () => {
       </h1>
 
       <div className={`grid grid-cols-2 max-sm:grid-cols-1 gap-10`}>
-        <ProgressBar title="PRE-PRODUCTION" point={"90%"} link="/pre-production" />
-        <ProgressBar
-          title="POST-PRODUCTION"
-          point={"95%"}
-          link="/post-production"
-        />
-        <ProgressBar title="PRODUCTION" point={"90%"} link="/production" />
-        <ProgressBar title="EKSPORT" point={"95%"} link="/eksport" />
+        <ProgressBar title="PRE-PRODUCTION" point={"90%"} />
+        <ProgressBar title="POST-PRODUCTION" point={"95%"} />
+        <ProgressBar title="PRODUCTION" point={"90%"} />
+        <ProgressBar title="EKSPORT" point={"95%"} />
       </div>
     </section>
   );

@@ -1,6 +1,5 @@
 export { default as menu } from "./menu.svg"
 export { default as close } from "./close.svg"
-export { default as back } from "./back.png"
 export { default as telegram } from "./telegram.png" 
 export { default as gmail } from "./gmail_logo.png"
 export { default as phone } from "./telefon.png"

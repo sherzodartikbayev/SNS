@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { gmail, phone, telegram } from "../../assets";
 import { styles } from "../../utils/style";
 import Button from "../button/button";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
@@ -26,7 +27,7 @@ const Contact = () => {
       // Telegram API ga xabar jo'natish
       const TELEGRAM_BOT_TOKEN =
         "7902329004:AAHj4Texwm-GgVwnH7LbI5zW047t8vIi3Go";
-      const CHAT_ID = "5838754660"; 
+      const CHAT_ID = "5838754660";
 
       const telegramURL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
@@ -44,10 +45,10 @@ const Contact = () => {
 
         const data = await response.json();
 
-        if (data.ok) {
-          console.log("Message sent successfully:", data);
+        if (data) {
+          return toast.success("Muvaqqiyatli jo'natildi !");
         } else {
-          console.error("Error sending message:", data);
+          return toast.error("Xatolik !!!");
         }
       } catch (error) {
         console.error("Error occurred while sending message:", error);
@@ -62,29 +63,28 @@ const Contact = () => {
     >
       <h1 className="font-inter font-normal text-4xl text-yellow">Contact</h1>
 
-      <div className={`${styles.flexBetween} `}>
-        <div className={`${styles.flexCenter} max-sm:flex-col w-full gap-10`}>
+        <div className={`${styles.flexBetween} gap-10 max-w-[1440px] max-sm:flex-col w-full`}>
           <div className={`${styles.flexCenter} w-2/4`}>
             <form
               onSubmit={SendMessage}
-              className={`${styles.flexCenter} flex-col p-5 gap-5 w-[415px] h-[420px] rounded-md bg-[#3F3F4580] max-xs:w-auto max-xs:h-auto`}
+              className={`${styles.flexCenter} flex-col px-10 py-10 gap-5 w-[415px] h-[420px] rounded-md bg-[#3F3F4580] max-xs:w-auto max-xs:h-auto`}
             >
               <input
                 type="text"
                 placeholder="Ism"
                 ref={nameRef}
-                className="h-[49px] p-3 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
+                className="w-full h-[49px] px-5 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
               />
               <input
                 type="email"
                 placeholder="Gmail"
                 ref={emailRef}
-                className="h-[49px] p-3 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
+                className="w-full h-[49px] p-5 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
               />
               <textarea
                 placeholder="Message"
                 ref={messageRef}
-                className="w-[280px] h-[137px] p-3 bg-[#3F3F4580] outline-none resize-none font-inter text-white text-lg"
+                className="w-full h-[137px] p-5 bg-[#3F3F4580] outline-none resize-none font-inter text-white text-lg"
               />
               <button
                 type="submit"
@@ -116,7 +116,6 @@ const Contact = () => {
             />
           </div>
         </div>
-      </div>
     </section>
   );
 };
