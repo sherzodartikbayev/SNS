@@ -1,13 +1,14 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { gmail, phone, telegram } from "../../assets";
 import { styles } from "../../utils/style";
 import Button from "../button/button";
-import { toast } from "react-toastify";
 
 const Contact = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const messageRef = useRef<HTMLTextAreaElement | null>(null);
+
+  const [loading, setLoading] = useState(false)
 
   const SendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ const Contact = () => {
       const telegramURL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
       try {
+        setLoading(true)
         const response = await fetch(telegramURL, {
           method: "POST",
           headers: {
@@ -42,14 +44,15 @@ const Contact = () => {
             text: telegramMessage,
           }),
         });
-
+        
         const data = await response.json();
 
         if (data) {
-          return toast.success("Muvaqqiyatli jo'natildi !");
+          console.log("Xabar jo'natildi !");
         } else {
-          return toast.error("Xatolik !!!");
+          console.log("Xatolik !!!");
         }
+        setLoading(false)
       } catch (error) {
         console.error("Error occurred while sending message:", error);
       }
@@ -90,7 +93,7 @@ const Contact = () => {
                 type="submit"
                 className="w-[330px] p-2 font-inter text-white text-lg bg-yellow max-sm:w-[275px]"
               >
-                Jo'natish
+                {loading ? "Jo'natilmoq..." : "Jo'natish"}
               </button>
             </form>
           </div>
