@@ -7,21 +7,24 @@ import {
   Skills,
   Work,
 } from "./components";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   return (
     <main className="relative">
-      <header>
-        <Navbar />
-      </header>
+      <ToastContainer />
+
+      {/* Header */}
+      <Navbar />
       <Hero />
       <About />
       <Skills />
       <Work />
       <Contact />
-      <footer>
-        <Footer />
-      </footer>
+      
+      {/* Footer */}
+      <Footer />
     </main>
   );
 };

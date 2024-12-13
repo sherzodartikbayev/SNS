@@ -2,60 +2,73 @@ import { useRef, useState } from "react";
 import { gmail, phone, telegram } from "../../assets";
 import { styles } from "../../utils/style";
 import Button from "../button/button";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Contact = () => {
   const nameRef = useRef<HTMLInputElement | null>(null);
   const emailRef = useRef<HTMLInputElement | null>(null);
   const messageRef = useRef<HTMLTextAreaElement | null>(null);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+
+  // Xabarlarni chiqarish funksiyalari
+  const notifySuccess = () => toast.success("Xabar muvaffaqiyatli jo'natildi!");
+  const notifyError = () => toast.error("Berilgan joylarni to'liq to'ldiring!");
 
   const SendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (nameRef.current && emailRef.current && messageRef.current) {
-      const name = nameRef.current.value;
-      const email = emailRef.current.value;
-      const message = messageRef.current.value;
+    // Input qiymatlarini olish
+    const name = nameRef.current?.value.trim() || "";
+    const email = emailRef.current?.value.trim() || "";
+    const message = messageRef.current?.value.trim() || "";
 
-      const telegramMessage = `
+    // Formani to‘ldirishni tekshirish
+    if (!name || !email || !message) {
+      notifyError();
+      return;
+    }
+
+    // Telegramga jo‘natish
+    const telegramMessage = `
       New message from your website:
-        Name: ${name}
-        Email: ${email}
-        Message: ${message}
+      Name: ${name}
+      Email: ${email}
+      Message: ${message}
     `;
 
-      // Telegram API ga xabar jo'natish
-      const TELEGRAM_BOT_TOKEN =
-        "7902329004:AAHj4Texwm-GgVwnH7LbI5zW047t8vIi3Go";
-      const CHAT_ID = "-4540684439";
+    const TELEGRAM_BOT_TOKEN = "7902329004:AAHj4Texwm-GgVwnH7LbI5zW047t8vIi3Go";
+    const CHAT_ID = "-4540684439";
+    const telegramURL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-      const telegramURL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+    try {
+      setLoading(true);
 
-      try {
-        setLoading(true)
-        const response = await fetch(telegramURL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: telegramMessage,
-          }),
-        });
-        
-        const data = await response.json();
+      const response = await fetch(telegramURL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: telegramMessage,
+        }),
+      });
 
-        if (data) {
-          console.log("Xabar jo'natildi !");
-        } else {
-          console.log("Xatolik !!!");
-        }
-        setLoading(false)
-      } catch (error) {
-        console.error("Error occurred while sending message:", error);
+      const data = await response.json();
+
+      if (data.ok) {
+        notifySuccess();
+
+        if (nameRef.current) nameRef.current.value = "";
+        if (emailRef.current) emailRef.current.value = "";
+        if (messageRef.current) messageRef.current.value = "";
+      } else {
+        throw new Error("Xato yuz berdi.");
       }
+    } catch (error) {
+      toast.error("Xabar jo'natishda xato yuz berdi.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -65,60 +78,60 @@ const Contact = () => {
       className={`${styles.paddingX} ${styles.flexCenter} flex-col gap-10 w-full h-auto max-sm:h-auto py-10 bg-gradient`}
     >
       <h1 className="font-inter font-normal text-4xl text-yellow">Contact</h1>
-
-        <div className={`${styles.flexBetween} gap-10 max-w-[1440px] max-sm:flex-col w-full`}>
-          <div className={`${styles.flexCenter} w-2/4`}>
-            <form
-              onSubmit={SendMessage}
-              className={`${styles.flexCenter} flex-col px-10 py-10 gap-5 w-[415px] h-[420px] rounded-md bg-[#3F3F4580] max-xs:w-auto max-xs:h-auto`}
+      <div className={`${styles.flexBetween} gap-10 max-w-[1440px] max-sm:flex-col w-full`}>
+        <div className={`${styles.flexCenter} w-2/4`}>
+          <form
+            onSubmit={SendMessage}
+            className={`${styles.flexCenter} flex-col px-10 py-10 gap-5 w-[415px] h-[420px] rounded-md bg-[#3F3F4580] max-xs:w-auto max-xs:h-auto`}
+          >
+            <input
+              type="text"
+              placeholder="Ism"
+              ref={nameRef}
+              className="w-full h-[49px] px-5 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
+            />
+            <input
+              type="email"
+              placeholder="Gmail"
+              ref={emailRef}
+              className="w-full h-[49px] p-5 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
+            />
+            <textarea
+              placeholder="Message"
+              ref={messageRef}
+              className="w-full h-[137px] p-5 bg-[#3F3F4580] outline-none resize-none font-inter text-white text-lg overflow-hidden"
+            />
+            <button
+              type="submit"
+              className="w-[330px] p-2 font-inter text-white text-lg bg-yellow max-sm:w-[275px]"
+              disabled={loading}
             >
-              <input
-                type="text"
-                placeholder="Ism"
-                ref={nameRef}
-                className="w-full h-[49px] px-5 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
-              />
-              <input
-                type="email"
-                placeholder="Gmail"
-                ref={emailRef}
-                className="w-full h-[49px] p-5 bg-[#3F3F4580] outline-none font-inter text-white text-lg"
-              />
-              <textarea
-                placeholder="Message"
-                ref={messageRef}
-                className="w-full h-[137px] p-5 bg-[#3F3F4580] outline-none resize-none font-inter text-white text-lg"
-              />
-              <button
-                type="submit"
-                className="w-[330px] p-2 font-inter text-white text-lg bg-yellow max-sm:w-[275px]"
-              >
-                {loading ? "Jo'natilmoq..." : "Jo'natish"}
-              </button>
-            </form>
-          </div>
-          <div className={`${styles.flexCenter} flex-col gap-5 w-[50%]`}>
-            <Button
-              title="Sirojiddin Sulaymanov"
-              img={telegram}
-              alt="telegram icon"
-              link="https://t.me/sns7562"
-              color="#111025"
-            />
-            <Button
-              title="sisu56744@gmail.com"
-              img={gmail}
-              alt="telegram icon"
-              color="#111025"
-            />
-            <Button
-              title="+998-90-810-75-62"
-              img={phone}
-              alt="phone icon"
-              color="#111025"
-            />
-          </div>
+              {loading ? "Jo'natilmoq..." : "Jo'natish"}
+            </button>
+          </form>
         </div>
+        <div className={`${styles.flexCenter} flex-col gap-5 w-[50%]`}>
+          <Button
+            title="Sirojiddin Sulaymanov"
+            img={telegram}
+            alt="telegram icon"
+            link="https://t.me/sns7562"
+            color="#111025"
+          />
+          <Button
+            title="sisu56744@gmail.com"
+            img={gmail}
+            alt="gmail icon"
+            color="#111025"
+          />
+          <Button
+            title="+998-90-810-75-62"
+            img={phone}
+            alt="phone icon"
+            color="#111025"
+          />
+        </div>
+      </div>
     </section>
   );
 };

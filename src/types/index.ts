@@ -1,5 +1,6 @@
 export interface ProgressBarProps {
   title: string;
+  width: string;
   point: string;
 }
 
