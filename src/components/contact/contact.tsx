@@ -39,7 +39,7 @@ const Contact = () => {
     `;
 
     const TELEGRAM_BOT_TOKEN = "7902329004:AAHj4Texwm-GgVwnH7LbI5zW047t8vIi3Go";
-    const CHAT_ID = "-4540684439";
+    const CHAT_ID = "-1002372212453";
     const telegramURL = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
     try {
