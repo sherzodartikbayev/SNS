@@ -20,11 +20,11 @@ const Footer = () => {
             title="Sherzod Artikbayev"
             img={telegram}
             alt="telegram icon"
-            link="https://t.me/sherzodartikbayev"
+            link="https://t.me/sherzod_artikbayev"
             color="#121327"
           />
           <Button
-            title="+998-90-815-31-38"
+            title="+998-33-436-05-20"
             img={phone}
             alt="telegram icon"
             color="#121327"
